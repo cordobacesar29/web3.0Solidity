@@ -8,6 +8,8 @@ contract TasksContract {
   constructor () {
     createTask("mi primer tarea de ejemplo", "descripcion de ejemplo");
   }
+
+  event TaskToggleDone(uint256 id, bool done);
   
   event TaskCreated(
     uint256 id,
@@ -37,6 +39,7 @@ contract TasksContract {
     Task memory _task = tasks[_id];
     _task.done = !_task.done;
     tasks[_id] = _task;
+    emit TaskToggleDone(_id, _task.done);
   }
 
 }
