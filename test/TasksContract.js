@@ -14,4 +14,16 @@ contract("TasksContract", () => {
     assert.notEqual(address, "");
   });
 
+  it("get Task List", async () => {
+    const counter = await this.tasksContract.taskCounter();
+    const task = await this.tasksContract.tasks(counter);
+
+    assert.equal(task.id.toNumber(), counter);
+    assert.equal(task.title, "mi primer tarea de ejemplo");
+    assert.equal(task.description, "descripcion de ejemplo");
+    assert.equal(task.done, false);
+    assert.equal(counter, 1);
+
+  });
+
 })
