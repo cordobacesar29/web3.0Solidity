@@ -26,4 +26,15 @@ contract("TasksContract", () => {
 
   });
 
+  it("task created successfully",async () => {
+    const result = await this.tasksContract.createTask("segunda tarea", "segunda descripcion");
+    const taskEvent = result.logs[0].args;
+    const counter = await this.tasksContract.taskCounter();
+
+    assert.equal(counter.toNumber(), 2);
+    assert.equal(taskEvent.id.toNumber(), 2);
+    assert.equal(taskEvent.title, "segunda tarea");
+    assert.equal(taskEvent.description, "segunda descripcion");
+    assert.equal(taskEvent.done, false);
+  });
 })
