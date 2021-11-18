@@ -9,6 +9,14 @@ contract TasksContract {
     createTask("mi primer tarea de ejemplo", "descripcion de ejemplo");
   }
   
+  event TaskCreated(
+    uint256 id,
+    string title,
+    string description,
+    bool done,
+    uint256 createdAt
+  );
+
   struct Task {
     uint256 id;
     string title;
@@ -22,6 +30,7 @@ contract TasksContract {
   function createTask (string memory _title, string memory _description ) public {
     taskCounter++;
     tasks[taskCounter] = Task( taskCounter, _title, _description, false, block.timestamp);
+    emit TaskCreated( taskCounter, _title, _description, false, block.timestamp);
   }
 
   function toggleDone(uint256 _id) public {
