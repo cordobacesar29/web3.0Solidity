@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", () => {
+  App.init();
+});
 
 const taskForm = document.querySelector("#taskForm");
 
